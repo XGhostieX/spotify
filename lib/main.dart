@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'core/theme/app_theme.dart';
 import 'features/splash/presentation/views/splash_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Spotify());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Spotify extends StatelessWidget {
+  const Spotify({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      title: 'Spotify',
+      theme: AppTheme.lightTheme,
       home: const SplashView(),
     );
   }
