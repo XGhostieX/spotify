@@ -15,6 +15,7 @@ class Spotify extends StatelessWidget {
     return MaterialApp(
       title: 'Spotify',
       theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
       home: const SplashView(),
     );
   }
