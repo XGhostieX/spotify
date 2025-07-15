@@ -49,7 +49,8 @@ class GetStarted extends StatelessWidget {
             const SizedBox(height: 20),
             BasicButton(
               title: 'Get Started',
-              onPressed: () => AppNavigator.push(context, const ChooseMode()),
+              onPressed: () =>
+                  AppNavigator.pushReplacement(context, const ChooseMode()),
             ),
           ],
         ),

@@ -5,6 +5,7 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/app_navigator.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/widgets/basic_button.dart';
+import '../../../../auth/presentation/views/auth_view.dart';
 import 'mode_box.dart';
 
 class ChooseMode extends StatelessWidget {
@@ -47,7 +48,7 @@ class ChooseMode extends StatelessWidget {
             BasicButton(
               title: 'Continue',
               onPressed: () =>
-                  AppNavigator.pushReplacement(context, const ChooseMode()),
+                  AppNavigator.pushReplacement(context, const AuthView()),
             ),
           ],
         ),
