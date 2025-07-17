@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 import '../utils/functions/is_dark_mode.dart';
 
-class BasicAppBar extends StatelessWidget {
-  const BasicAppBar({super.key});
+class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Widget? title;
+  const BasicAppBar({super.key, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,12 @@ class BasicAppBar extends StatelessWidget {
             ),
           ),
         ),
+        title: title ?? const Text(''),
+        centerTitle: true,
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
