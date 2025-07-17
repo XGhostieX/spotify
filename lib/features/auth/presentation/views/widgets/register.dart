@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SignUp extends StatelessWidget {
+class Register extends StatelessWidget {
   // final TextEditingController _emailController = TextEditingController();
   // final TextEditingController _passwordController = TextEditingController();
 
-  const SignUp({super.key});
+  const Register({super.key});
 
   @override
   Widget build(BuildContext context) {

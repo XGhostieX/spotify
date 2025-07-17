@@ -47,8 +47,7 @@ class ChooseMode extends StatelessWidget {
             const SizedBox(height: 50),
             BasicButton(
               title: 'Continue',
-              onPressed: () =>
-                  AppNavigator.pushReplacement(context, const AuthView()),
+              onPressed: () => AppNavigator.push(context, const AuthView()),
             ),
           ],
         ),

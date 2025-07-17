@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/assets.dart';
@@ -33,7 +34,7 @@ class ModeBox extends StatelessWidget {
                         width: 35,
                         height: 35,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).brightness == Brightness.dark
+                          color: context.isDarkMode
                               ? AppColors.primary
                               : Colors.transparent,
                           shape: BoxShape.circle,
@@ -55,8 +56,7 @@ class ModeBox extends StatelessWidget {
                           child: SvgPicture.asset(
                             Assets.moon,
                             fit: BoxFit.none,
-                            colorFilter:
-                                Theme.of(context).brightness == Brightness.dark
+                            colorFilter: context.isDarkMode
                                 ? const ColorFilter.mode(
                                     AppColors.primary,
                                     BlendMode.srcIn,
@@ -101,10 +101,9 @@ class ModeBox extends StatelessWidget {
                         width: 35,
                         height: 35,
                         decoration: BoxDecoration(
-                          color:
-                              Theme.of(context).brightness == Brightness.light
-                              ? AppColors.primary
-                              : Colors.transparent,
+                          color: context.isDarkMode
+                              ? Colors.transparent
+                              : AppColors.primary,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -124,14 +123,13 @@ class ModeBox extends StatelessWidget {
                           child: SvgPicture.asset(
                             Assets.sun,
                             fit: BoxFit.none,
-                            colorFilter:
-                                Theme.of(context).brightness == Brightness.light
+                            colorFilter: context.isDarkMode
                                 ? const ColorFilter.mode(
-                                    AppColors.primary,
+                                    AppColors.lightBackground,
                                     BlendMode.srcIn,
                                   )
                                 : const ColorFilter.mode(
-                                    AppColors.lightBackground,
+                                    AppColors.primary,
                                     BlendMode.srcIn,
                                   ),
                           ),

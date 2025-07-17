@@ -25,7 +25,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   Future<void> redirect() async {
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2));
     // ignore: use_build_context_synchronously
     AppNavigator.pushReplacement(context, const GetStarted());
   }
