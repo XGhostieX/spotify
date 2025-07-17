@@ -82,9 +82,10 @@ class Register extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Do you have an account?'),
+            const Text('Do You Have an Account?'),
             TextButton(
-              onPressed: () => AppNavigator.push(context, const SignIn()),
+              onPressed: () =>
+                  AppNavigator.pushReplacement(context, const SignIn()),
               child: const Text(
                 'Sign In',
                 style: TextStyle(color: Color(0xFF288CE9)),
