@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'core/theme/app_theme.dart';
 import 'features/splash/presentation/views/splash_view.dart';
 import 'features/splash/presentation/views_model/theme_cubit/theme_cubit.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   // SystemChrome.setEnabledSystemUIMode(
@@ -23,6 +25,7 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const Spotify());
 }
 
