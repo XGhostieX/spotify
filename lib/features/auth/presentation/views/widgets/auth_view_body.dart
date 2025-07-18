@@ -73,8 +73,7 @@ class AuthViewBody extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextButton(
-                        onPressed: () =>
-                            AppNavigator.push(context, const SignIn()),
+                        onPressed: () => AppNavigator.push(context, SignIn()),
                         child: Text(
                           'Sign in',
                           style: TextStyle(
