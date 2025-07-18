@@ -7,6 +7,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'core/theme/app_theme.dart';
+import 'core/utils/service_locator.dart';
 import 'features/splash/presentation/views/splash_view.dart';
 import 'features/splash/presentation/views_model/theme_cubit/theme_cubit.dart';
 import 'firebase_options.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  setup();
   runApp(const Spotify());
 }
 

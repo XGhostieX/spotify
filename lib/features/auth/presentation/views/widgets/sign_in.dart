@@ -80,7 +80,7 @@ class SignIn extends StatelessWidget {
             const Text('Not a Member ?'),
             TextButton(
               onPressed: () =>
-                  AppNavigator.pushReplacement(context, const Register()),
+                  AppNavigator.pushReplacement(context, Register()),
               child: const Text(
                 'Register Now',
                 style: TextStyle(color: Color(0xFF288CE9)),
