@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 
 import '../../../../../core/models/auth/signin_user_req.dart';
 import '../../../../../core/theme/app_colors.dart';
@@ -13,11 +14,23 @@ import '../../../../home/presentation/views/home_view.dart';
 import '../../../data/repos/auth_repo.dart';
 import 'register.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  late bool hiddenPassword;
 
-  SignIn({super.key});
+  @override
+  void initState() {
+    super.initState();
+    hiddenPassword = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +77,26 @@ class SignIn extends StatelessWidget {
             const SizedBox(height: 20),
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(
+              obscureText: hiddenPassword,
+              decoration: InputDecoration(
                 hintText: 'Password',
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      hiddenPassword = !hiddenPassword;
+                    });
+                  },
+                  icon: Icon(
+                    hiddenPassword
+                        ? Icons.visibility_off_rounded
+                        : Icons.visibility_rounded,
+                  ),
+                ),
+                suffixIconColor: hiddenPassword
+                    ? context.isDarkMode
+                          ? const Color(0xFF5B5B5B)
+                          : const Color(0xFF8D8D8D)
+                    : AppColors.primary,
               ).applyDefaults(Theme.of(context).inputDecorationTheme),
             ),
 

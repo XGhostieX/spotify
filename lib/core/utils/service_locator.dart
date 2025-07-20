@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -12,6 +13,7 @@ final getIt = GetIt.instance;
 void setup() {
   getIt.registerSingleton<FirebaseService>(FirebaseService());
   getIt.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
+  getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl());
   // getIt.registerSingleton<FirebaseService>(
   //   FirebaseService(firestore: getIt.get<FirebaseFirestore>()),

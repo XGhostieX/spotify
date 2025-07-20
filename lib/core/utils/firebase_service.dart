@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -8,10 +9,14 @@ import 'service_locator.dart';
 class FirebaseService {
   Future<Either> register(CreateUserReq createUserReq) async {
     try {
-      await getIt<FirebaseAuth>().createUserWithEmailAndPassword(
+      var user = await getIt<FirebaseAuth>().createUserWithEmailAndPassword(
         email: createUserReq.email,
         password: createUserReq.password,
       );
+      getIt<FirebaseFirestore>().collection('users').add({
+        'name': createUserReq.name,
+        'email': user.user!.email,
+      });
       return const Right('Register Was Successfull');
     } on FirebaseAuthException catch (e) {
       return Left(e.message);
@@ -26,7 +31,11 @@ class FirebaseService {
       );
       return const Right('Sign In Was Successfull');
     } on FirebaseAuthException catch (e) {
-      return Left(e.message);
+      if (e.code == 'invalid-credential') {
+        return const Left('The Email or Password Provided is Incorrect');
+      } else {
+        return Left(e.message);
+      }
     }
   }
 }

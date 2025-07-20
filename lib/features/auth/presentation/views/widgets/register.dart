@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 
 import '../../../../../core/models/auth/create_user_req.dart';
 import '../../../../../core/theme/app_colors.dart';
@@ -13,12 +14,24 @@ import '../../../../home/presentation/views/home_view.dart';
 import '../../../data/repos/auth_repo.dart';
 import 'sign_in.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
+  const Register({super.key});
+
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  late bool hiddenPassword;
 
-  Register({super.key});
+  @override
+  void initState() {
+    super.initState();
+    hiddenPassword = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +85,26 @@ class Register extends StatelessWidget {
             const SizedBox(height: 15),
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(
+              obscureText: hiddenPassword,
+              decoration: InputDecoration(
                 hintText: 'Password',
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      hiddenPassword = !hiddenPassword;
+                    });
+                  },
+                  icon: Icon(
+                    hiddenPassword
+                        ? Icons.visibility_off_rounded
+                        : Icons.visibility_rounded,
+                  ),
+                ),
+                suffixIconColor: hiddenPassword
+                    ? context.isDarkMode
+                          ? const Color(0xFF5B5B5B)
+                          : const Color(0xFF8D8D8D)
+                    : AppColors.primary,
               ).applyDefaults(Theme.of(context).inputDecorationTheme),
             ),
             const SizedBox(height: 25),
