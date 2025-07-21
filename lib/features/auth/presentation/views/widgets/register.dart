@@ -142,7 +142,8 @@ class _RegisterState extends State<Register> {
           children: [
             const Text('Do You Have an Account?'),
             TextButton(
-              onPressed: () => AppNavigator.pushReplacement(context, SignIn()),
+              onPressed: () =>
+                  AppNavigator.pushReplacement(context, const SignIn()),
               child: const Text(
                 'Sign In',
                 style: TextStyle(color: Color(0xFF288CE9)),

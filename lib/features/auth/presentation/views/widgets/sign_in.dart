@@ -133,7 +133,7 @@ class _SignInState extends State<SignIn> {
             const Text('Not a Member ?'),
             TextButton(
               onPressed: () =>
-                  AppNavigator.pushReplacement(context, Register()),
+                  AppNavigator.pushReplacement(context, const Register()),
               child: const Text(
                 'Register Now',
                 style: TextStyle(color: Color(0xFF288CE9)),

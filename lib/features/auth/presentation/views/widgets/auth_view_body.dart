@@ -68,12 +68,14 @@ class AuthViewBody extends StatelessWidget {
                       flex: 1,
                       child: BasicButton(
                         title: 'Register',
-                        onPressed: () => AppNavigator.push(context, Register()),
+                        onPressed: () =>
+                            AppNavigator.push(context, const Register()),
                       ),
                     ),
                     Expanded(
                       child: TextButton(
-                        onPressed: () => AppNavigator.push(context, SignIn()),
+                        onPressed: () =>
+                            AppNavigator.push(context, const SignIn()),
                         child: Text(
                           'Sign in',
                           style: TextStyle(

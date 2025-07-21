@@ -7,4 +7,5 @@ class Assets {
   static const unionTop = 'assets/vectors/Union-top.svg';
   static const unionBottom = 'assets/vectors/Union-bottom.svg';
   static const authBG = 'assets/images/auth-bg.png';
+  static const search = 'assets/vectors/Search.svg';
 }
