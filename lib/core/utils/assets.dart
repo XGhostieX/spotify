@@ -8,4 +8,6 @@ class Assets {
   static const unionBottom = 'assets/vectors/Union-bottom.svg';
   static const authBG = 'assets/images/auth-bg.png';
   static const search = 'assets/vectors/Search.svg';
+  static const frame = 'assets/vectors/Frame.svg';
+  static const frameImage = 'assets/images/frame-image.png';
 }
