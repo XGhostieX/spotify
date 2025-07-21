@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/auth/create_user_req.dart';
 import '../models/auth/signin_user_req.dart';
+import '../models/song.dart';
 import 'service_locator.dart';
 
 class FirebaseService {
@@ -36,6 +37,23 @@ class FirebaseService {
       } else {
         return Left(e.message);
       }
+    }
+  }
+
+  Future<Either> fetchSongs() async {
+    try {
+      var data = await getIt<FirebaseFirestore>()
+          .collection('songs')
+          .orderBy('releaseDate', descending: true)
+          .limit(3)
+          .get();
+      List<Song> songs = [];
+      for (var element in data.docs) {
+        songs.add(Song.fromJson(element.data()));
+      }
+      return right(songs);
+    } catch (e) {
+      return Left(e.toString());
     }
   }
 }
