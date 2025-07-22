@@ -10,4 +10,5 @@ class Assets {
   static const search = 'assets/vectors/Search.svg';
   static const frame = 'assets/vectors/Frame.svg';
   static const frameImage = 'assets/images/frame-image.png';
+  static const play = 'assets/vectors/Play.svg';
 }

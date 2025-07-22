@@ -45,7 +45,6 @@ class FirebaseService {
       var data = await getIt<FirebaseFirestore>()
           .collection('songs')
           .orderBy('releaseDate', descending: true)
-          .limit(3)
           .get();
       List<Song> songs = [];
       for (var element in data.docs) {

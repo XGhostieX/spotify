@@ -25,7 +25,7 @@ class _TabsState extends State<Tabs> with SingleTickerProviderStateMixin {
       controller: _tabController,
       dividerHeight: 0,
       indicatorColor: AppColors.primary,
-      padding: const EdgeInsets.only(right: 10, left: 10, bottom: 10),
+      padding: const EdgeInsets.only(right: 10, left: 10, bottom: 20),
       indicatorPadding: const EdgeInsets.symmetric(horizontal: 7),
       splashFactory: NoSplash.splashFactory,
       labelColor: context.isDarkMode ? const Color(0xFFDBDBDB) : Colors.black,

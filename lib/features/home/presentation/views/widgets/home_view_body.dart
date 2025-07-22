@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'home_frame.dart';
+import 'songs_listview.dart';
 import 'tabs.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -11,7 +12,7 @@ class HomeViewBody extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [HomeFrame(), Tabs()],
+        children: [HomeFrame(), Tabs(), SongsListview()],
       ),
     );
   }
