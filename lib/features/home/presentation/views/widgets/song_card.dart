@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify/core/utils/assets.dart';
-import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 
 import '../../../../../core/models/song.dart';
+import '../../../../../core/widgets/play_btn.dart';
 
 class SongCard extends StatelessWidget {
   final Song song;
@@ -56,26 +55,10 @@ class SongCard extends StatelessWidget {
             ),
           ],
         ),
-        Positioned(
+        const Positioned(
           right: 10,
           bottom: 55,
-          child: Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: context.isDarkMode
-                  ? const Color(0xFF2C2C2C)
-                  : const Color(0xFFE6E6E6),
-            ),
-            child: SvgPicture.asset(
-              Assets.play,
-              fit: BoxFit.none,
-              colorFilter: context.isDarkMode
-                  ? const ColorFilter.mode(Color(0xFF959595), BlendMode.srcIn)
-                  : const ColorFilter.mode(Color(0xFF555555), BlendMode.srcIn),
-            ),
-          ),
+          child: PlayBtn(size: 30, icon: Assets.play),
         ),
       ],
     );

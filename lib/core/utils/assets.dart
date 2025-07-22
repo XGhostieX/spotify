@@ -11,4 +11,6 @@ class Assets {
   static const frame = 'assets/vectors/Frame.svg';
   static const frameImage = 'assets/images/frame-image.png';
   static const play = 'assets/vectors/Play.svg';
+  static const playLg = 'assets/vectors/PlayLg.svg';
+  static const heart = 'assets/vectors/Heart.svg';
 }
