@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/models/song.dart';
 import 'cover.dart';
 import 'details.dart';
+import 'player.dart';
 
 class PlayerViewBody extends StatelessWidget {
   final Song song;
@@ -17,6 +18,8 @@ class PlayerViewBody extends StatelessWidget {
           Cover(cover: song.cover!),
           const SizedBox(height: 20),
           Details(song: song),
+          const SizedBox(height: 40),
+          Player(song: song),
         ],
       ),
     );

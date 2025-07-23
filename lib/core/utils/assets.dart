@@ -13,4 +13,8 @@ class Assets {
   static const play = 'assets/vectors/Play.svg';
   static const playLg = 'assets/vectors/PlayLg.svg';
   static const heart = 'assets/vectors/Heart.svg';
+  static const repeats = 'assets/vectors/Repeate.svg';
+  static const previous = 'assets/vectors/Previous.svg';
+  static const next = 'assets/vectors/Next.svg';
+  static const shuffle = 'assets/vectors/Shuffle.svg';
 }
