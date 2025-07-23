@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/app_navigator.dart';
+import '../../../../player/presentation/views/player_view.dart';
 import '../../views_model/songs_cubit/songs_cubit.dart';
 import 'song_card.dart';
 
@@ -22,8 +24,13 @@ class SongsListview extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               separatorBuilder: (context, index) => const SizedBox(width: 10),
-              itemBuilder: (context, index) =>
-                  SongCard(song: state.songs[index]),
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () => AppNavigator.push(
+                  context,
+                  PlayerView(song: state.songs[index]),
+                ),
+                child: SongCard(song: state.songs[index]),
+              ),
             ),
           );
         } else if (state is SongsFailure) {

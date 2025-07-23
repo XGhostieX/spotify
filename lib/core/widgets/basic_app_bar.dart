@@ -5,13 +5,19 @@ import '../utils/functions/is_dark_mode.dart';
 
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
+  final Widget? action;
   final bool hideBack;
-  const BasicAppBar({super.key, this.title, this.hideBack = false});
+  const BasicAppBar({
+    super.key,
+    this.title,
+    this.hideBack = false,
+    this.action,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -39,6 +45,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
         title: title ?? const Text(''),
         centerTitle: true,
+        actions: [action ?? const SizedBox()],
       ),
     );
   }

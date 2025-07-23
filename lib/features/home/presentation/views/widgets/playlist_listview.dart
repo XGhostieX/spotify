@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/app_navigator.dart';
+import '../../../../player/presentation/views/player_view.dart';
 import '../../views_model/songs_cubit/songs_cubit.dart';
 import 'playlist_item.dart';
 
@@ -16,13 +18,20 @@ class PlaylistListview extends StatelessWidget {
           // return const ShimmerSkeleton();
         } else if (state is SongsSuccess) {
           return SizedBox(
-            height: 175,
+            // height: 175,
             child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: state.songs.length,
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               separatorBuilder: (context, index) => const SizedBox(height: 20),
-              itemBuilder: (context, index) =>
-                  PlaylistItem(song: state.songs[index]),
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () => AppNavigator.push(
+                  context,
+                  PlayerView(song: state.songs[index]),
+                ),
+                child: PlaylistItem(song: state.songs[index]),
+              ),
             ),
           );
         } else if (state is SongsFailure) {
