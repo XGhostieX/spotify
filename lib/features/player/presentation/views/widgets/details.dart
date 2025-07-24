@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 
 import '../../../../../core/models/song.dart';
-import '../../../../../core/utils/assets.dart';
+import '../../../../../core/widgets/favorite_btn.dart';
 
 class Details extends StatelessWidget {
   final Song song;
@@ -28,12 +26,7 @@ class Details extends StatelessWidget {
             ),
           ],
         ),
-        SvgPicture.asset(
-          Assets.heart,
-          colorFilter: context.isDarkMode
-              ? const ColorFilter.mode(Color(0xFF565656), BlendMode.srcIn)
-              : const ColorFilter.mode(Color(0xFFB4B4B4), BlendMode.srcIn),
-        ),
+        FavoriteBtn(song: song),
       ],
     );
   }

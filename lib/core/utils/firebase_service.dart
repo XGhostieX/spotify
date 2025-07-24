@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../features/home/data/repos/home_repo.dart';
 import '../models/auth/create_user_req.dart';
 import '../models/auth/signin_user_req.dart';
 import '../models/song.dart';
@@ -14,7 +15,7 @@ class FirebaseService {
         email: createUserReq.email,
         password: createUserReq.password,
       );
-      getIt<FirebaseFirestore>().collection('users').add({
+      getIt<FirebaseFirestore>().collection('users').doc(user.user!.uid).set({
         'name': createUserReq.name,
         'email': user.user!.email,
       });
@@ -48,11 +49,58 @@ class FirebaseService {
           .get();
       List<Song> songs = [];
       for (var element in data.docs) {
-        songs.add(Song.fromJson(element.data()));
+        var song = Song.fromJson(element.data());
+        bool isFavorite = await getIt<HomeRepo>().isFavorite(
+          element.reference.id,
+        );
+        song.isFavorite = isFavorite;
+        songs.add(song);
       }
       return right(songs);
     } catch (e) {
       return Left(e.toString());
+    }
+  }
+
+  Future<Either> favoriteSong(String id) async {
+    try {
+      var favorite = await getIt<FirebaseFirestore>()
+          .collection('users')
+          .doc(getIt<FirebaseAuth>().currentUser!.uid)
+          .collection('favorites')
+          .where('id', isEqualTo: id)
+          .get();
+      if (favorite.docs.isNotEmpty) {
+        await favorite.docs.first.reference.delete();
+        return right(false);
+      } else {
+        await getIt<FirebaseFirestore>()
+            .collection('users')
+            .doc(getIt<FirebaseAuth>().currentUser!.uid)
+            .collection('favorites')
+            .add({'id': id, 'date': Timestamp.now()});
+        return right(true);
+      }
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<bool> isFavorite(String id) async {
+    try {
+      var favorite = await getIt<FirebaseFirestore>()
+          .collection('users')
+          .doc(getIt<FirebaseAuth>().currentUser!.uid)
+          .collection('favorites')
+          .where('id', isEqualTo: id)
+          .get();
+      if (favorite.docs.isNotEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
     }
   }
 }

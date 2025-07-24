@@ -9,4 +9,14 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either> fetchSongs() async {
     return await getIt.get<FirebaseService>().fetchSongs();
   }
+
+  @override
+  Future<Either> favoriteSong(String id) async {
+    return await getIt.get<FirebaseService>().favoriteSong(id);
+  }
+
+  @override
+  Future<bool> isFavorite(String id) async {
+    return await getIt.get<FirebaseService>().isFavorite(id);
+  }
 }

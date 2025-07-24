@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 
 import '../../../../../core/models/song.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../../core/widgets/favorite_btn.dart';
 import '../../../../../core/widgets/play_btn.dart';
 
 class PlaylistItem extends StatelessWidget {
@@ -45,17 +44,12 @@ class PlaylistItem extends StatelessWidget {
           ],
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(song.duration!.toStringAsFixed(2).replaceAll('.', ':')),
             const SizedBox(width: 30),
-            SvgPicture.asset(
-              Assets.heart,
-              colorFilter: context.isDarkMode
-                  ? const ColorFilter.mode(Color(0xFF565656), BlendMode.srcIn)
-                  : const ColorFilter.mode(Color(0xFFB4B4B4), BlendMode.srcIn),
-            ),
+            FavoriteBtn(song: song),
           ],
         ),
       ],
