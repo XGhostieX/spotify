@@ -13,6 +13,7 @@ import '../../../../../core/widgets/basic_button.dart';
 import '../../../../home/presentation/views/home_view.dart';
 import '../../../data/repos/auth_repo.dart';
 import 'register.dart';
+import 'root.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -117,7 +118,7 @@ class _SignInState extends State<SignIn> {
                   );
                   result.fold((left) => displayMessage(left, true), (r) {
                     displayMessage('Sign In Was Successfull', false);
-                    AppNavigator.pushAndRemove(context, const HomeView());
+                    AppNavigator.pushAndRemove(context, const Root());
                   });
                 }
               },

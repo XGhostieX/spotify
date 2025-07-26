@@ -18,4 +18,9 @@ class Assets {
   static const previous = 'assets/vectors/Previous.svg';
   static const next = 'assets/vectors/Next.svg';
   static const shuffle = 'assets/vectors/Shuffle.svg';
+  static const home = 'assets/vectors/Home.svg';
+  static const homeActive = 'assets/vectors/Home_active.svg';
+  static const profile = 'assets/vectors/Profile.svg';
+  static const profileActive = 'assets/vectors/Profile_active.svg';
+  static const profileImage = 'assets/images/profile-image.png';
 }

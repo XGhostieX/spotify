@@ -12,6 +12,7 @@ import '../../../../../core/widgets/basic_app_bar.dart';
 import '../../../../../core/widgets/basic_button.dart';
 import '../../../../home/presentation/views/home_view.dart';
 import '../../../data/repos/auth_repo.dart';
+import 'root.dart';
 import 'sign_in.dart';
 
 class Register extends StatefulWidget {
@@ -127,7 +128,7 @@ class _RegisterState extends State<Register> {
                   );
                   result.fold((left) => displayMessage(left, true), (r) {
                     displayMessage('Register Was Successfull', false);
-                    AppNavigator.pushAndRemove(context, const HomeView());
+                    AppNavigator.pushAndRemove(context, const Root());
                   });
                 }
               },
