@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../core/utils/app_navigator.dart';
 import '../../../../player/presentation/views/player_view.dart';
@@ -25,9 +26,10 @@ class SongsListview extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               separatorBuilder: (context, index) => const SizedBox(width: 10),
               itemBuilder: (context, index) => GestureDetector(
-                onTap: () => AppNavigator.push(
+                onTap: () => PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  PlayerView(song: state.songs[index]),
+                  screen: PlayerView(song: state.songs[index]),
+                  withNavBar: false,
                 ),
                 child: SongCard(song: state.songs[index]),
               ),

@@ -45,6 +45,7 @@ class Root extends StatelessWidget {
           ? const Color(0xFF343434)
           : Colors.white,
       isVisible: true,
+
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(
           duration: Duration(milliseconds: 400),

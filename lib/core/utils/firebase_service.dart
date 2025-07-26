@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 
 import '../../features/home/data/repos/home_repo.dart';
 import '../models/auth/create_user_req.dart';
 import '../models/auth/signin_user_req.dart';
 import '../models/song.dart';
+import '../models/user.dart';
 import 'service_locator.dart';
 
 class FirebaseService {
@@ -101,6 +102,19 @@ class FirebaseService {
       }
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<Either> fetchUser() async {
+    try {
+      var userData = await getIt<FirebaseFirestore>()
+          .collection('users')
+          .doc(getIt<FirebaseAuth>().currentUser!.uid)
+          .get();
+      User user = User.fromJson(userData.data()!);
+      return right(user);
+    } catch (e) {
+      return Left(e.toString());
     }
   }
 }

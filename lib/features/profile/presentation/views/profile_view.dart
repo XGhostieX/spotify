@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 import 'package:spotify/core/widgets/basic_app_bar.dart';
 
+import '../../../../core/widgets/theme_btn.dart';
+import '../views_model/profile_cubit/profile_cubit.dart';
 import 'widgets/profile_view_body.dart';
 
 class ProfileView extends StatelessWidget {
@@ -8,6 +12,23 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(appBar: BasicAppBar(), body: ProfileViewBody());
+    return BlocProvider(
+      create: (context) => ProfileCubit()..fetchUser(),
+      child: Scaffold(
+        appBar: BasicAppBar(
+          title: const Text(
+            'Profile',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: context.isDarkMode
+              ? const Color(0xFF2C2B2B)
+              : Colors.white,
+          hideBack: true,
+          padding: 0,
+          action: const ThemeBtn(),
+        ),
+        body: const ProfileViewBody(),
+      ),
+    );
   }
 }

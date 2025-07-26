@@ -7,20 +7,24 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final Widget? action;
   final bool hideBack;
+  final Color backgroundColor;
+  final double padding;
   const BasicAppBar({
     super.key,
     this.title,
     this.hideBack = false,
     this.action,
+    this.backgroundColor = Colors.transparent,
+    this.padding = 10,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: padding),
       child: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: backgroundColor,
         leading: hideBack
             ? null
             : IconButton(
