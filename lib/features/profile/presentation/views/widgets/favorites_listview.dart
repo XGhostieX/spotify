@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../../../core/widgets/favorite_shimmer_skeleton.dart';
 import '../../../../player/presentation/views/player_view.dart';
 import '../../views_model/favorites_cubit/favorites_cubit.dart';
 import 'favorites_item.dart';
@@ -14,8 +15,8 @@ class FavoritesListview extends StatelessWidget {
     return BlocBuilder<FavoritesCubit, FavoritesState>(
       builder: (context, state) {
         if (state is FavoritesLoading) {
-          return const Center(child: CircularProgressIndicator());
-          // return const ShimmerSkeleton();
+          // return const Center(child: CircularProgressIndicator());
+          return const FavoriteShimmerSkeleton();
         } else if (state is FavoritesSuccess) {
           return SizedBox(
             // height: 175,

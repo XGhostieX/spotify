@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../../../core/widgets/playlist_shimmer_skeleton.dart';
 import '../../../../player/presentation/views/player_view.dart';
 import '../../views_model/songs_cubit/songs_cubit.dart';
 import 'playlist_item.dart';
@@ -14,8 +15,8 @@ class PlaylistListview extends StatelessWidget {
     return BlocBuilder<SongsCubit, SongsState>(
       builder: (context, state) {
         if (state is SongsLoading) {
-          return const Center(child: CircularProgressIndicator());
-          // return const ShimmerSkeleton();
+          // return const Center(child: CircularProgressIndicator());
+          return const PlaylistShimmerSkeleton();
         } else if (state is SongsSuccess) {
           return SizedBox(
             // height: 175,

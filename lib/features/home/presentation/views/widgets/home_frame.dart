@@ -24,7 +24,12 @@ class HomeFrame extends StatelessWidget {
             //   child: Image.asset(Assets.frameImage),
             // ),
             SvgPicture.asset(Assets.frame),
-            Positioned(top: -67.8, child: Image.asset(Assets.frameImage)),
+            Positioned(
+              // top: -67.8,
+              top: -95,
+              left: 20,
+              child: Image.asset(Assets.frameImage, width: 270, height: 270),
+            ),
           ],
         ),
       ),
