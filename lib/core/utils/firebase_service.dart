@@ -117,4 +117,28 @@ class FirebaseService {
       return Left(e.toString());
     }
   }
+
+  Future<Either> fetchFavoriteSongs() async {
+    try {
+      var favoriteData = await getIt<FirebaseFirestore>()
+          .collection('users')
+          .doc(getIt<FirebaseAuth>().currentUser!.uid)
+          .collection('favorites')
+          .get();
+      List<Song> songs = [];
+      for (var element in favoriteData.docs) {
+        var data = await getIt<FirebaseFirestore>()
+            .collection('songs')
+            .doc(element['id'])
+            .get();
+        var song = Song.fromJson(data.data()!);
+        bool isFavorite = await getIt<HomeRepo>().isFavorite(data.reference.id);
+        song.isFavorite = isFavorite;
+        songs.add(song);
+      }
+      return right(songs);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

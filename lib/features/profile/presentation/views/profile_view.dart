@@ -4,6 +4,7 @@ import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 import 'package:spotify/core/widgets/basic_app_bar.dart';
 
 import '../../../../core/widgets/theme_btn.dart';
+import '../views_model/favorites_cubit/favorites_cubit.dart';
 import '../views_model/profile_cubit/profile_cubit.dart';
 import 'widgets/profile_view_body.dart';
 
@@ -12,8 +13,13 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProfileCubit()..fetchUser(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ProfileCubit()..fetchUser()),
+        BlocProvider(
+          create: (context) => FavoritesCubit()..fetchFavoriteSongs(),
+        ),
+      ],
       child: Scaffold(
         appBar: BasicAppBar(
           title: const Text(

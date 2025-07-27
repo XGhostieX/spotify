@@ -10,7 +10,6 @@ import '../../../../../core/utils/functions/display_message.dart';
 import '../../../../../core/utils/service_locator.dart';
 import '../../../../../core/widgets/basic_app_bar.dart';
 import '../../../../../core/widgets/basic_button.dart';
-import '../../../../home/presentation/views/home_view.dart';
 import '../../../data/repos/auth_repo.dart';
 import 'root.dart';
 import 'sign_in.dart';

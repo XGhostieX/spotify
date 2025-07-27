@@ -8,13 +8,14 @@ import '../views_model/audio_player_cubit/audio_player_cubit.dart';
 import 'widgets/player_view_body.dart';
 
 class PlayerView extends StatelessWidget {
-  final Song song;
-  const PlayerView({super.key, required this.song});
+  final List<Song> songs;
+  final int index;
+  const PlayerView({super.key, required this.songs, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AudioPlayerCubit()..load(song.song!),
+      create: (context) => AudioPlayerCubit()..load(songs[index].song!),
       child: Scaffold(
         appBar: const BasicAppBar(
           title: Text(
@@ -23,7 +24,7 @@ class PlayerView extends StatelessWidget {
           ),
           action: ThemeBtn(),
         ),
-        body: PlayerViewBody(song: song),
+        body: PlayerViewBody(songs: songs, index: index),
       ),
     );
   }

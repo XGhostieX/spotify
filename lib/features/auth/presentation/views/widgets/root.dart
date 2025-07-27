@@ -36,7 +36,9 @@ class Root extends StatelessWidget {
           inactiveIcon: SvgPicture.asset(Assets.profile),
           // title: ("Profile"),
           activeColorPrimary: AppColors.primary,
-          inactiveColorPrimary: AppColors.grey,
+          inactiveColorPrimary: context.isDarkMode
+              ? const Color(0xFF737373)
+              : const Color(0xFF808080),
         ),
       ],
       popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,

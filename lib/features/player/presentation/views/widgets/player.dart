@@ -5,12 +5,15 @@ import 'package:spotify/core/utils/functions/is_dark_mode.dart';
 
 import '../../../../../core/models/song.dart';
 import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/utils/app_navigator.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../views_model/audio_player_cubit/audio_player_cubit.dart';
+import '../player_view.dart';
 
 class Player extends StatelessWidget {
-  final Song song;
-  const Player({super.key, required this.song});
+  final List<Song> songs;
+  final int index;
+  const Player({super.key, required this.songs, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +83,19 @@ class Player extends StatelessWidget {
                     icon: SvgPicture.asset(Assets.repeats),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (index == 0) {
+                        AppNavigator.pushReplacement(
+                          context,
+                          PlayerView(songs: songs, index: songs.length - 1),
+                        );
+                      } else {
+                        AppNavigator.pushReplacement(
+                          context,
+                          PlayerView(songs: songs, index: index - 1),
+                        );
+                      }
+                    },
                     icon: SvgPicture.asset(
                       Assets.previous,
                       colorFilter: context.isDarkMode
@@ -113,7 +128,19 @@ class Player extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (index == songs.length - 1) {
+                        AppNavigator.pushReplacement(
+                          context,
+                          PlayerView(songs: songs, index: 0),
+                        );
+                      } else {
+                        AppNavigator.pushReplacement(
+                          context,
+                          PlayerView(songs: songs, index: index + 1),
+                        );
+                      }
+                    },
                     icon: SvgPicture.asset(
                       Assets.next,
                       colorFilter: context.isDarkMode

@@ -6,8 +6,9 @@ import 'details.dart';
 import 'player.dart';
 
 class PlayerViewBody extends StatelessWidget {
-  final Song song;
-  const PlayerViewBody({super.key, required this.song});
+  final List<Song> songs;
+  final int index;
+  const PlayerViewBody({super.key, required this.songs, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +16,11 @@ class PlayerViewBody extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          Cover(cover: song.cover!),
+          Cover(cover: songs[index].cover!),
           const SizedBox(height: 20),
-          Details(song: song),
+          Details(song: songs[index]),
           const SizedBox(height: 40),
-          Player(song: song),
+          Player(songs: songs, index: index),
         ],
       ),
     );

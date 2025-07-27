@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-import '../../../../../core/utils/app_navigator.dart';
 import '../../../../player/presentation/views/player_view.dart';
 import '../../views_model/songs_cubit/songs_cubit.dart';
 import 'song_card.dart';
@@ -28,7 +27,7 @@ class SongsListview extends StatelessWidget {
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () => PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  screen: PlayerView(song: state.songs[index]),
+                  screen: PlayerView(songs: state.songs, index: index),
                   withNavBar: false,
                 ),
                 child: SongCard(song: state.songs[index]),

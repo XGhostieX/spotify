@@ -9,4 +9,9 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<Either> fetchUser() async {
     return await getIt.get<FirebaseService>().fetchUser();
   }
+
+  @override
+  Future<Either> fetchFavoriteSongs() async {
+    return await getIt.get<FirebaseService>().fetchFavoriteSongs();
+  }
 }
